@@ -153,6 +153,7 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
+<span id="155">155</span>
 </pre><pre class="rust"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libsqlite3_sys</span> <span class="kw">as</span> <span class="ident">ffi</span>;
 
 <span class="kw">use</span> <span class="ident">std::cell::Ref</span>;
@@ -278,7 +279,8 @@
             <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(
                 <span class="string">&quot;Sqlite&#39;s documentation state that this case ({}) is not reachable. \
                  If you ever see this error message please open an issue at \
-                 https://github.com/diesel-rs/diesel.&quot;</span>
+                 https://github.com/diesel-rs/diesel.&quot;</span>,
+                <span class="ident">tpe</span>
             ),
         }
     }

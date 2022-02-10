@@ -530,6 +530,8 @@
 <span id="525">525</span>
 <span id="526">526</span>
 <span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
 </pre><pre class="rust"><code><span class="doccomment">//! # Diesel</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Diesel is an ORM and query builder designed to reduce the boilerplate for database interactions.</span>
@@ -649,6 +651,8 @@
 <span class="doccomment">//! This feature can be used to implement a custom implementation of diesels `Connection` trait for the</span>
 <span class="doccomment">//! mysql backend outside of diesel itself, while reusing the existing query dsl extensions for the</span>
 <span class="doccomment">//! mysql backend</span>
+<span class="doccomment">//! - `returning_clauses_for_sqlite_3_35`: This feature enables support for `RETURNING` clauses in the sqlite backend.</span>
+<span class="doccomment">//! Enabling this feature requires sqlite 3.35.0 or newer.</span>
 <span class="doccomment">//! - `32-column-tables`: This feature enables support for tables with up to 32 columns.</span>
 <span class="doccomment">//! This feature is enabled by default. Consider disabling this feature if you write a library crate</span>
 <span class="doccomment">//! providing general extensions for diesel or if you do not need to support tables with more than 16 columns</span>
@@ -1058,5 +1062,5 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">__diesel_check_column_count_internal</span> <span class="kw">as</span> <span class="ident">__diesel_check_column_count</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (4e8fb743c 2022-02-03)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
 </body></html>

@@ -26,6 +26,11 @@
 <span id="21">21</span>
 <span id="22">22</span>
 <span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression::expression_types::NotSelectable</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pg::Pg</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types</span>::{<span class="ident">Bigint</span>, <span class="ident">Bool</span>, <span class="ident">Inet</span>, <span class="ident">Jsonb</span>};
@@ -49,6 +54,11 @@
 <span class="macro">infix_operator!</span>(<span class="ident">OrNet</span>, <span class="string">&quot; | &quot;</span>, <span class="ident">Inet</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
 <span class="macro">infix_operator!</span>(<span class="ident">DifferenceNet</span>, <span class="string">&quot; - &quot;</span>, <span class="ident">Bigint</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
 <span class="macro">infix_operator!</span>(<span class="ident">ConcatJsonb</span>, <span class="string">&quot; || &quot;</span>, <span class="ident">Jsonb</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
+<span class="macro">infix_operator!</span>(<span class="ident">HasKeyJsonb</span>, <span class="string">&quot; ? &quot;</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
+<span class="macro">infix_operator!</span>(<span class="ident">HasAnyKeyJsonb</span>, <span class="string">&quot; ?| &quot;</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
+<span class="macro">infix_operator!</span>(<span class="ident">HasAllKeysJsonb</span>, <span class="string">&quot; ?&amp; &quot;</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
+<span class="macro">infix_operator!</span>(<span class="ident">ContainsJsonb</span>, <span class="string">&quot; @&gt; &quot;</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
+<span class="macro">infix_operator!</span>(<span class="ident">IsContainedByJsonb</span>, <span class="string">&quot; &lt;@ &quot;</span>, <span class="ident">backend</span>: <span class="ident">Pg</span>);
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (4e8fb743c 2022-02-03)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
 </body></html>

@@ -79,7 +79,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types</span>::{<span class="ident">DieselNumericOps</span>, <span class="ident">IntoNullable</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">DieselNumericOps</span>, <span class="ident">ValidGrouping</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">T</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">T</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">expr</span>: <span class="ident">T</span>) -&gt; <span class="self">Self</span> {

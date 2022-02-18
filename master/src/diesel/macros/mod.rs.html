@@ -1688,6 +1688,41 @@
 <span id="1687">1687</span>
 <span id="1688">1688</span>
 <span id="1689">1689</span>
+<span id="1690">1690</span>
+<span id="1691">1691</span>
+<span id="1692">1692</span>
+<span id="1693">1693</span>
+<span id="1694">1694</span>
+<span id="1695">1695</span>
+<span id="1696">1696</span>
+<span id="1697">1697</span>
+<span id="1698">1698</span>
+<span id="1699">1699</span>
+<span id="1700">1700</span>
+<span id="1701">1701</span>
+<span id="1702">1702</span>
+<span id="1703">1703</span>
+<span id="1704">1704</span>
+<span id="1705">1705</span>
+<span id="1706">1706</span>
+<span id="1707">1707</span>
+<span id="1708">1708</span>
+<span id="1709">1709</span>
+<span id="1710">1710</span>
+<span id="1711">1711</span>
+<span id="1712">1712</span>
+<span id="1713">1713</span>
+<span id="1714">1714</span>
+<span id="1715">1715</span>
+<span id="1716">1716</span>
+<span id="1717">1717</span>
+<span id="1718">1718</span>
+<span id="1719">1719</span>
+<span id="1720">1720</span>
+<span id="1721">1721</span>
+<span id="1722">1722</span>
+<span id="1723">1723</span>
+<span id="1724">1724</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_parens</span>)]</span> <span class="comment">// FIXME: Remove this attribute once false positive is resolved.</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt_skip</span>)]</span> <span class="comment">// https://github.com/rust-lang-nursery/rustfmt/issues/2755</span>
 
@@ -2455,6 +2490,12 @@
                 }
             }
 
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">DB</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::QueryFragment</span><span class="op">&lt;</span><span class="ident">DB</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span> <span class="kw">where</span> <span class="ident">DB</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::backend::Backend</span> {
+                <span class="kw">fn</span> <span class="ident">walk_ast</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">pass</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::AstPass</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;b</span>, <span class="ident">DB</span><span class="op">&gt;</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::result::QueryResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+                    <span class="op">&lt;</span><span class="ident">table</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::nodes::StaticQueryFragment</span><span class="op">&gt;</span><span class="ident">::STATIC_COMPONENT</span>.<span class="ident">walk_ast</span>(<span class="ident">pass</span>)
+                }
+            }
+
             <span class="macro-nonterminal">$</span><span class="macro">crate::__diesel_table_generate_static_query_fragment_for_table!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">schema</span>, <span class="ident">table</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sql_name</span>);
 
             <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::AsQuery</span> <span class="kw">for</span> <span class="ident">table</span> {
@@ -2499,6 +2540,31 @@
 
             <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span> {
                 <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Once</span>;
+            }
+
+            <span class="comment">// impl&lt;S: AliasSource&lt;Table=table&gt;&gt; AppearsInFromClause&lt;table&gt; for Alias&lt;S&gt;</span>
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasAppearsInFromClause</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>
+            <span class="kw">where</span> <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span><span class="op">&lt;</span><span class="ident">Target</span><span class="op">=</span><span class="ident">table</span><span class="op">&gt;</span>,
+            {
+                <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Never</span>;
+            }
+
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>
+            <span class="kw">where</span> <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span>,
+            {
+                <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Never</span>;
+            }
+
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">C</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::FieldAliasMapperAssociatedTypesDisjointnessTrick</span><span class="op">&lt;</span><span class="ident">table</span>, <span class="ident">S</span>, <span class="ident">C</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>
+            <span class="kw">where</span>
+                <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span><span class="op">&lt;</span><span class="ident">Target</span> <span class="op">=</span> <span class="ident">table</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::clone::Clone</span>,
+                <span class="ident">C</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Column</span><span class="op">&lt;</span><span class="ident">Table</span> <span class="op">=</span> <span class="ident">table</span><span class="op">&gt;</span>,
+            {
+                <span class="kw">type</span> <span class="ident">Out</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AliasedField</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">C</span><span class="op">&gt;</span>;
+
+                <span class="kw">fn</span> <span class="ident">map</span>(<span class="ident">column</span>: <span class="ident">C</span>, <span class="ident">alias</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>) -&gt; <span class="ident"><span class="self">Self</span>::Out</span> {
+                    <span class="ident">alias</span>.<span class="ident">field</span>(<span class="ident">column</span>)
+                }
             }
 
             <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::NoFromClause</span> {
@@ -2552,6 +2618,19 @@
                 <span class="kw">type</span> <span class="ident">OnClause</span> <span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::BoxedSelectStatement</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::FromClause</span><span class="op">&lt;</span><span class="ident">QS</span><span class="op">&gt;</span>, <span class="ident">ST</span>, <span class="ident">DB</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::JoinTo</span><span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::OnClause</span>;
                 <span class="kw">fn</span> <span class="ident">join_target</span>(<span class="ident">rhs</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::BoxedSelectStatement</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::FromClause</span><span class="op">&lt;</span><span class="ident">QS</span><span class="op">&gt;</span>, <span class="ident">ST</span>, <span class="ident">DB</span><span class="op">&gt;</span>) -&gt; (<span class="ident"><span class="self">Self</span>::FromClause</span>, <span class="ident"><span class="self">Self</span>::OnClause</span>) {
                     <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">on_clause</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_builder::BoxedSelectStatement::join_target</span>(<span class="ident">table</span>);
+                    (<span class="ident">rhs</span>, <span class="ident">on_clause</span>)
+                }
+            }
+
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::JoinTo</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>
+            <span class="kw">where</span>
+                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::JoinTo</span><span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span>,
+            {
+                <span class="kw">type</span> <span class="ident">FromClause</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>;
+                <span class="kw">type</span> <span class="ident">OnClause</span> <span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::JoinTo</span><span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::OnClause</span>;
+
+                <span class="kw">fn</span> <span class="ident">join_target</span>(<span class="ident">rhs</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>) -&gt; (<span class="ident"><span class="self">Self</span>::FromClause</span>, <span class="ident"><span class="self">Self</span>::OnClause</span>) {
+                    <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">on_clause</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span>::<span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span><span class="ident">::join_target</span>(<span class="ident">table</span>);
                     (<span class="ident">rhs</span>, <span class="ident">on_clause</span>)
                 }
             }
@@ -2862,17 +2941,8 @@
 <span class="macro">macro_rules!</span> <span class="ident">allow_tables_to_appear_in_same_query</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">left_mod</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod</span>:<span class="ident">ident</span>),<span class="op">+</span> $(,)<span class="kw-2">*</span>) =&gt; {
         $(
-            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">left_mod::table</span><span class="op">&gt;</span>
-                <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod::table</span>
-            {
-                <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Never</span>;
-            }
-
-            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod::table</span><span class="op">&gt;</span>
-                <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">left_mod::table</span>
-            {
-                <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Never</span>;
-            }
+            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::TableNotEqual</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">left_mod::table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod::table</span> {}
+            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::TableNotEqual</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod::table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">left_mod::table</span> {}
         )<span class="op">+</span>
         <span class="macro-nonterminal">$</span><span class="macro">crate::allow_tables_to_appear_in_same_query!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_mod</span>,)<span class="op">+</span>);
     };

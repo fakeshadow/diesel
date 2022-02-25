@@ -1724,6 +1724,17 @@
 <span id="1722">1722</span>
 <span id="1723">1723</span>
 <span id="1724">1724</span>
+<span id="1725">1725</span>
+<span id="1726">1726</span>
+<span id="1727">1727</span>
+<span id="1728">1728</span>
+<span id="1729">1729</span>
+<span id="1730">1730</span>
+<span id="1731">1731</span>
+<span id="1732">1732</span>
+<span id="1733">1733</span>
+<span id="1734">1734</span>
+<span id="1735">1735</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_parens</span>)]</span> <span class="comment">// FIXME: Remove this attribute once false positive is resolved.</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt_skip</span>)]</span> <span class="comment">// https://github.com/rust-lang-nursery/rustfmt/issues/2755</span>
 
@@ -2548,6 +2559,17 @@
             <span class="kw">where</span> <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span><span class="op">&lt;</span><span class="ident">Target</span><span class="op">=</span><span class="ident">table</span><span class="op">&gt;</span>,
             {
                 <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Never</span>;
+            }
+
+            <span class="comment">// impl&lt;S1: AliasSource&lt;Table=table&gt;, S2: AliasSource&lt;Table=table&gt;&gt; AppearsInFromClause&lt;Alias&lt;S1&gt;&gt; for Alias&lt;S2&gt;</span>
+            <span class="comment">// Those are specified by the `alias!` macro, but this impl will allow it to implement this trait even in downstream</span>
+            <span class="comment">// crates from the schema</span>
+            <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S1</span>, <span class="ident">S2</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasAliasAppearsInFromClause</span><span class="op">&lt;</span><span class="ident">table</span>, <span class="ident">S2</span>, <span class="ident">S1</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>
+            <span class="kw">where</span> <span class="ident">S1</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span><span class="op">&lt;</span><span class="ident">Target</span><span class="op">=</span><span class="ident">table</span><span class="op">&gt;</span>,
+                  <span class="ident">S2</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span><span class="op">&lt;</span><span class="ident">Target</span><span class="op">=</span><span class="ident">table</span><span class="op">&gt;</span>,
+                  <span class="ident">S1</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasAliasAppearsInFromClauseSameTable</span><span class="op">&lt;</span><span class="ident">S2</span>, <span class="ident">table</span><span class="op">&gt;</span>,
+            {
+                <span class="kw">type</span> <span class="ident">Count</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">S1</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasAliasAppearsInFromClauseSameTable</span><span class="op">&lt;</span><span class="ident">S2</span>, <span class="ident">table</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Count</span>;
             }
 
             <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AppearsInFromClause</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::Alias</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">table</span>

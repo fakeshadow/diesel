@@ -33,6 +33,9 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Everything related to table aliasing</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! See [`alias!`](crate::alias!) for more details</span>
@@ -44,7 +47,10 @@
 <span class="kw">mod</span> <span class="ident">joins</span>;
 <span class="kw">mod</span> <span class="ident">macros</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">alias</span>::{<span class="ident">Alias</span>, <span class="ident">AliasAliasAppearsInFromClause</span>, <span class="ident">AliasAppearsInFromClause</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">alias</span>::{
+    <span class="ident">Alias</span>, <span class="ident">AliasAliasAppearsInFromClause</span>, <span class="ident">AliasAliasAppearsInFromClauseSameTable</span>,
+    <span class="ident">AliasAppearsInFromClause</span>,
+};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">aliased_field::AliasedField</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">field_alias_mapper</span>::{<span class="ident">FieldAliasMapper</span>, <span class="ident">FieldAliasMapperAssociatedTypesDisjointnessTrick</span>};
 

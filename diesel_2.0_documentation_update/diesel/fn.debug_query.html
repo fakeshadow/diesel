@@ -10,7 +10,7 @@ that implements <code>fmt::Display</code> and <code>fmt::Debug</code> to show th
 server, with a comment showing the values of the bind parameters. The
 <code>Debug</code> implementation will include the same information in a more
 structured form, and respects pretty printing.</p>
-<h2 id="example" class="section-header"><a href="#example">Example</a></h2><h4 id="returning-sql-from-a-count-statement" class="section-header"><a href="#returning-sql-from-a-count-statement">Returning SQL from a count statement:</a></h4>
+<h2 id="example"><a href="#example">Example</a></h2><h4 id="returning-sql-from-a-count-statement"><a href="#returning-sql-from-a-count-statement">Returning SQL from a count statement:</a></h4>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let</span> <span class="ident">sql</span> <span class="op">=</span> <span class="ident">debug_query</span>::<span class="op">&lt;</span><span class="ident">DB</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">users</span>.<span class="ident">count</span>()).<span class="ident">to_string</span>();
 <span class="macro">assert_eq!</span>(<span class="ident">sql</span>, <span class="string">&quot;SELECT COUNT(*) FROM `users` -- binds: []&quot;</span>);
 
@@ -26,5 +26,5 @@ structured form, and respects pretty printing.</p>
     binds: [1] \
 }&quot;</span>;
 <span class="macro">assert_eq!</span>(<span class="ident">debug</span>, <span class="ident">expected</span>);</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

@@ -12,11 +12,11 @@ the SQL.</p>
 your query. If you want to write the entire query using raw SQL, use
 <a href="fn.sql_query.html"><code>sql_query</code></a> instead.</p>
 <p>Query parameters can be bound into the literal SQL using <a href="../expression/struct.SqlLiteral.html#method.bind"><code>SqlLiteral::bind()</code></a>.</p>
-<h2 id="safety" class="section-header"><a href="#safety">Safety</a></h2>
+<h2 id="safety"><a href="#safety">Safety</a></h2>
 <p>The compiler will be unable to verify the correctness of the annotated type.
 If you give the wrong type, it’ll either return an error when deserializing
 the query result or produce unexpected values.</p>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">diesel::dsl::sql</span>;
 <span class="kw">let</span> <span class="ident">user</span> <span class="op">=</span> <span class="ident">users</span>.<span class="ident">filter</span>(<span class="ident">sql</span>::<span class="op">&lt;</span><span class="ident">Bool</span><span class="op">&gt;</span>(<span class="string">&quot;name = &#39;Sean&#39;&quot;</span>)).<span class="ident">first</span>(<span class="ident">connection</span>)<span class="question-mark">?</span>;
 <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> (<span class="number">1</span>, <span class="ident">String::from</span>(<span class="string">&quot;Sean&quot;</span>));
@@ -32,5 +32,5 @@ the query result or produce unexpected values.</p>
     .<span class="ident">get_results</span>(<span class="ident">connection</span>);
 <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;Tess&quot;</span>.<span class="ident">to_string</span>()];
 <span class="macro">assert_eq!</span>(<span class="prelude-val">Ok</span>(<span class="ident">expected</span>), <span class="ident">query</span>);</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

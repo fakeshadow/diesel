@@ -3,20 +3,20 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../diesel/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"><a href="#">Crate diesel</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 2.0.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#functions">Functions</a></li></ul></div><div id="sidebar-vars" data-name="diesel" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../diesel/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">diesel</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/diesel/lib.rs.html#1-529">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="diesel" class="section-header"><a href="#diesel">Diesel</a></h2>
+        </a><h2 class="location"><a href="#">Crate diesel</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 2.0.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#functions">Functions</a></li></ul></div></section><div id="sidebar-vars" data-name="diesel" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../diesel/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">diesel</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/diesel/lib.rs.html#1-538">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="diesel"><a href="#diesel">Diesel</a></h2>
 <p>Diesel is an ORM and query builder designed to reduce the boilerplate for database interactions.
 If this is your first time reading this documentation,
 we recommend you start with the <a href="https://diesel.rs/guides/getting-started/">getting started guide</a>.
 We also have <a href="https://diesel.rs/guides">many other long form guides</a>.</p>
-<h2 id="where-to-find-things" class="section-header"><a href="#where-to-find-things">Where to find things</a></h2><h3 id="declaring-your-schema" class="section-header"><a href="#declaring-your-schema">Declaring your schema</a></h3>
+<h2 id="where-to-find-things"><a href="#where-to-find-things">Where to find things</a></h2><h3 id="declaring-your-schema"><a href="#declaring-your-schema">Declaring your schema</a></h3>
 <p>For Diesel to validate your queries at compile time
 it requires you to specify your schema in your code,
 which you can do with <a href="macro.table.html" title="table!">the <code>table!</code> macro</a>.
 <code>diesel print-schema</code> can be used
 to automatically generate these macro calls
 (by connecting to your database and querying its schema).</p>
-<h3 id="getting-started" class="section-header"><a href="#getting-started">Getting started</a></h3>
+<h3 id="getting-started"><a href="#getting-started">Getting started</a></h3>
 <p>Queries usually start from either a table, or a function like <a href="dsl/fn.update.html"><code>update</code></a>.
 Those functions can be found <a href="#functions">here</a>.</p>
 <p>Diesel provides a <a href="prelude/index.html"><code>prelude</code> module</a>,
@@ -24,7 +24,7 @@ which exports most of the typically used traits and types.
 We are conservative about what goes in this module,
 and avoid anything which has a generic name.
 Files which use Diesel are expected to have <code>use diesel::prelude::*;</code>.</p>
-<h3 id="constructing-a-query" class="section-header"><a href="#constructing-a-query">Constructing a query</a></h3>
+<h3 id="constructing-a-query"><a href="#constructing-a-query">Constructing a query</a></h3>
 <p>The tools the query builder gives you can be put into these three categories:</p>
 <ul>
 <li>“Query builder methods” are things that map to portions of a whole query
@@ -49,7 +49,7 @@ Diesel only supports a very small number of these functions.
 You can declare additional functions you want to use
 with <a href="prelude/macro.sql_function.html" title="sql_function!">the <code>sql_function!</code> macro</a>.</li>
 </ul>
-<h3 id="serializing-and-deserializing" class="section-header"><a href="#serializing-and-deserializing">Serializing and Deserializing</a></h3>
+<h3 id="serializing-and-deserializing"><a href="#serializing-and-deserializing">Serializing and Deserializing</a></h3>
 <p>Types which represent the result of a SQL query implement
 a trait called <a href="prelude/trait.Queryable.html"><code>Queryable</code></a>.</p>
 <p>Diesel maps “Rust types” (e.g. <code>i32</code>) to and from “SQL types”
@@ -63,12 +63,12 @@ see the documentation for that SQL type.</p>
 go to the docs for either <a href="serialize/trait.ToSql.html"><code>ToSql</code></a> or <a href="deserialize/trait.FromSql.html"><code>FromSql</code></a>,
 go to the “Implementors” section,
 and find the Rust type you want to use.</p>
-<h3 id="getting-help" class="section-header"><a href="#getting-help">Getting help</a></h3>
+<h3 id="getting-help"><a href="#getting-help">Getting help</a></h3>
 <p>If you run into problems, Diesel has an active community.
 Either open a new <a href="https://github.com/diesel-rs/diesel/discussions/categories/q-a">discussion</a> thread at diesel github repository or
 use the active Gitter room at
 <a href="https://gitter.im/diesel-rs/diesel">gitter.im/diesel-rs/diesel</a></p>
-<h2 id="crate-feature-flags" class="section-header"><a href="#crate-feature-flags">Crate feature flags</a></h2>
+<h2 id="crate-feature-flags"><a href="#crate-feature-flags">Crate feature flags</a></h2>
 <p>The following feature flags are considered to be part of diesels public
 API. Any feature flag that is not listed here is <strong>not</strong> considered to
 be part of the public API and can disappear at any point in time:</p>
@@ -167,7 +167,8 @@ combined into a single trait for boxing purposes.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="sqlite/index.html" title="diesel::sqlite mod">sqlite</a><span class="stab portability" title="This is supported on crate feature `sqlite` only"><code>sqlite</code></span></div><div class="item-right docblock-short"><p>Provides types and functions related to working with SQLite</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="upsert/index.html" title="diesel::upsert mod">upsert</a></div><div class="item-right docblock-short"><p>Types and functions related to PG’s and Sqlite’s <code>ON CONFLICT</code> clause</p>
 </div></div></div><h2 id="macros" class="small-section-header"><a href="#macros">Macros</a></h2>
-<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.allow_columns_to_appear_in_same_group_by_clause.html" title="diesel::allow_columns_to_appear_in_same_group_by_clause macro">allow_columns_to_appear_in_same_group_by_clause</a></div><div class="item-right docblock-short"><p>Allow two or more columns which are otherwise unrelated to be used together
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.alias.html" title="diesel::alias macro">alias</a></div><div class="item-right docblock-short"><p>Declare a new alias for a table</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.allow_columns_to_appear_in_same_group_by_clause.html" title="diesel::allow_columns_to_appear_in_same_group_by_clause macro">allow_columns_to_appear_in_same_group_by_clause</a></div><div class="item-right docblock-short"><p>Allow two or more columns which are otherwise unrelated to be used together
 in a group by clause.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.allow_tables_to_appear_in_same_query.html" title="diesel::allow_tables_to_appear_in_same_query macro">allow_tables_to_appear_in_same_query</a></div><div class="item-right docblock-short"><p>Allow two or more tables which are otherwise unrelated to be used together
 in a query.</p>
@@ -208,5 +209,5 @@ testing diesel itself, but likely useful for third party crates as well. The
 given expressions must be selectable from anywhere.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.sql_query.html" title="diesel::sql_query fn">sql_query</a></div><div class="item-right docblock-short"><p>Construct a full SQL query using raw SQL.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.update.html" title="diesel::update fn">update</a></div><div class="item-right docblock-short"><p>Creates an <code>UPDATE</code> statement.</p>
-</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

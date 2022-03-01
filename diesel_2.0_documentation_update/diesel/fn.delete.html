@@ -9,12 +9,12 @@
 every row in the table will be deleted.
 This scope can be narrowed by calling <a href="query_builder/struct.DeleteStatement.html#method.filter"><code>filter</code></a>
 on the table before it is passed in.</p>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2><h4 id="deleting-a-single-record" class="section-header"><a href="#deleting-a-single-record">Deleting a single record:</a></h4>
+<h2 id="examples"><a href="#examples">Examples</a></h2><h4 id="deleting-a-single-record"><a href="#deleting-a-single-record">Deleting a single record:</a></h4>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let</span> <span class="ident">old_count</span> <span class="op">=</span> <span class="ident">users</span>.<span class="ident">count</span>().<span class="ident">first</span>::<span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>(<span class="ident">connection</span>);
 <span class="ident">diesel::delete</span>(<span class="ident">users</span>.<span class="ident">filter</span>(<span class="ident">id</span>.<span class="ident">eq</span>(<span class="number">1</span>))).<span class="ident">execute</span>(<span class="ident">connection</span>)<span class="question-mark">?</span>;
 <span class="macro">assert_eq!</span>(<span class="ident">old_count</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">count</span><span class="op">|</span> <span class="ident">count</span> <span class="op">-</span> <span class="number">1</span>), <span class="ident">users</span>.<span class="ident">count</span>().<span class="ident">first</span>(<span class="ident">connection</span>));</code></pre></div>
-<h4 id="deleting-a-whole-table" class="section-header"><a href="#deleting-a-whole-table">Deleting a whole table:</a></h4>
+<h4 id="deleting-a-whole-table"><a href="#deleting-a-whole-table">Deleting a whole table:</a></h4>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">diesel::delete</span>(<span class="ident">users</span>).<span class="ident">execute</span>(<span class="ident">connection</span>)<span class="question-mark">?</span>;
 <span class="macro">assert_eq!</span>(<span class="prelude-val">Ok</span>(<span class="number">0</span>), <span class="ident">users</span>.<span class="ident">count</span>().<span class="ident">first</span>::<span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>(<span class="ident">connection</span>));</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

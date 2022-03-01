@@ -19,7 +19,7 @@ which improves compilation time,
 by disabling the default features of Diesel.
 Note that enabling 64 column tables or larger will substantially increase
 the compile time of Diesel.</p>
-<h3 id="example-usage" class="section-header"><a href="#example-usage">Example usage</a></h3>
+<h3 id="example-usage"><a href="#example-usage">Example usage</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="macro">diesel::table!</span> {
     <span class="ident">users</span> {
         <span class="ident">id</span> -&gt; <span class="ident">Integer</span>,
@@ -85,28 +85,28 @@ the <code>sql_name</code> attribute like this:</p>
     }
 }</code></pre></div>
 <p>This module will also contain several helper types:</p>
-<h3 id="dsl" class="section-header"><a href="#dsl">dsl</a></h3>
+<h3 id="dsl"><a href="#dsl">dsl</a></h3>
 <p>This simply re-exports the table, renamed to the same name as the module,
 and each of the columns. This is useful to glob import when you’re dealing
 primarily with one table, to allow writing <code>users.filter(name.eq(&quot;Sean&quot;))</code>
 instead of <code>users::table.filter(users::name.eq(&quot;Sean&quot;))</code>.</p>
-<h3 id="all_columns" class="section-header"><a href="#all_columns"><code>all_columns</code></a></h3>
+<h3 id="all_columns"><a href="#all_columns"><code>all_columns</code></a></h3>
 <p>A constant will be assigned called <code>all_columns</code>. This is what will be
 selected if you don’t otherwise specify a select clause. It’s type will be
 <code>table::AllColumns</code>. You can also get this value from the
 <code>Table::all_columns</code> function.</p>
-<h3 id="star" class="section-header"><a href="#star">star</a></h3>
+<h3 id="star"><a href="#star">star</a></h3>
 <p>This will be the qualified “star” expression for this table (e.g.
 <code>users.*</code>). Internally, we read columns by index, not by name, so this
 column is not safe to read data out of, and it has had it’s SQL type set to
 <code>()</code> to prevent accidentally using it as such. It is sometimes useful for
 count statements however. It can also be accessed through the <code>Table.star()</code>
 method.</p>
-<h3 id="sqltype" class="section-header"><a href="#sqltype"><code>SqlType</code></a></h3>
+<h3 id="sqltype"><a href="#sqltype"><code>SqlType</code></a></h3>
 <p>A type alias called <code>SqlType</code> will be created. It will be the SQL type of
 <code>all_columns</code>. The SQL type is needed for things like <a href="trait.QueryDsl.html#method.into_boxed">returning boxed
 queries</a>.</p>
-<h3 id="boxedquery" class="section-header"><a href="#boxedquery"><code>BoxedQuery</code></a></h3>
+<h3 id="boxedquery"><a href="#boxedquery"><code>BoxedQuery</code></a></h3>
 <div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxedQuery</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">DB</span>, <span class="ident">ST</span> <span class="op">=</span> <span class="ident">SqlType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">BoxedSelectStatement</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">ST</span>, <span class="ident">table</span>, <span class="ident">DB</span><span class="op">&gt;</span>;</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

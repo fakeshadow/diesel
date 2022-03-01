@@ -34,7 +34,7 @@ struct using this derive: one for an owned version and one for a borrowed versio
 Using <code>#[diesel(serialize_as)]</code> implies a conversion using <code>.into</code> which consumes the underlying value.
 Hence, once you use <code>#[diesel(serialize_as)]</code>, Diesel can no longer insert borrowed
 versions of your struct.</p>
-<h2 id="attributes" class="section-header"><a href="#attributes">Attributes</a></h2><h3 id="optional-container-attributes" class="section-header"><a href="#optional-container-attributes">Optional container attributes</a></h3>
+<h2 id="attributes"><a href="#attributes">Attributes</a></h2><h3 id="optional-container-attributes"><a href="#optional-container-attributes">Optional container attributes</a></h3>
 <ul>
 <li><code>#[diesel(table_name = path::to::table)]</code>, specifies a path to the table this type
 is insertable into. The path is relative to the current module.
@@ -44,7 +44,7 @@ If this attribute is not used, the type name converted to
 value primitive. <em>Note</em>: This option may control if your query is stored in the
 prepared statement cache or not*</li>
 </ul>
-<h3 id="optional-field-attributes" class="section-header"><a href="#optional-field-attributes">Optional field attributes</a></h3>
+<h3 id="optional-field-attributes"><a href="#optional-field-attributes">Optional field attributes</a></h3>
 <ul>
 <li><code>#[diesel(column_name = some_column_name)]</code>, overrides the column the current
 field maps to <code>some_column_name</code>. By default the field name is used
@@ -56,7 +56,7 @@ field type, Diesel will convert the field into <code>SomeType</code> using <code
 serialize that instead. By default this derive will serialize directly using
 the actual field type.</li>
 </ul>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
 <p>If we want to customize the serialization during insert, we can use <code>#[diesel(serialize_as)]</code>.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">FromSqlRow</span>, <span class="ident">AsExpression</span>)]</span>
@@ -101,5 +101,5 @@ the actual field type.</li>
     <span class="prelude-val">Ok</span>(<span class="string">&quot;THOMAS&quot;</span>.<span class="ident">to_string</span>()),
     <span class="ident">users</span>.<span class="ident">select</span>(<span class="ident">name</span>).<span class="ident">first</span>(<span class="ident">connection</span>)
 );</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

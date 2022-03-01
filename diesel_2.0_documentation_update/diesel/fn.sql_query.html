@@ -14,12 +14,12 @@ function will need to have <code>#[derive(QueryableByName)]</code>.</p>
 using raw SQL. If you only need a small bit of raw SQL in your query, use
 <a href="dsl/fn.sql.html"><code>sql</code></a> instead.</p>
 <p>Query parameters can be bound into the raw query using <a href="query_builder/struct.SqlQuery.html#method.bind"><code>SqlQuery::bind()</code></a>.</p>
-<h2 id="safety" class="section-header"><a href="#safety">Safety</a></h2>
+<h2 id="safety"><a href="#safety">Safety</a></h2>
 <p>The implementation of <code>QueryableByName</code> will assume that columns with a
 given name will have a certain type. The compiler will be unable to verify
 that the given type is correct. If your query returns a column of an
 unexpected type, the result may have the wrong value, or return an error.</p>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let</span> <span class="ident">users</span> <span class="op">=</span> <span class="ident">sql_query</span>(<span class="string">&quot;SELECT * FROM users ORDER BY id&quot;</span>)
     .<span class="ident">load</span>(<span class="ident">connection</span>);
 <span class="kw">let</span> <span class="ident">expected_users</span> <span class="op">=</span> <span class="macro">vec!</span>[
@@ -39,5 +39,5 @@ unexpected type, the result may have the wrong value, or return an error.</p>
     <span class="ident">User</span> { <span class="ident">id</span>: <span class="number">3</span>, <span class="ident">name</span>: <span class="string">&quot;Jim&quot;</span>.<span class="ident">into</span>() },
 ];
 <span class="macro">assert_eq!</span>(<span class="prelude-val">Ok</span>(<span class="ident">expected_users</span>), <span class="ident">users</span>);</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

@@ -25,7 +25,7 @@ to convert it to the actual field type. This can be used to add custom behavior 
 single field, or use types that are otherwise unsupported by Diesel.
 (Note: all types that have <code>Into&lt;T&gt;</code> automatically implement <code>TryInto&lt;T&gt;</code>,
 for cases where your conversion is not faillible.)</p>
-<h2 id="attributes" class="section-header"><a href="#attributes">Attributes</a></h2><h3 id="optional-field-attributes" class="section-header"><a href="#optional-field-attributes">Optional field attributes</a></h3>
+<h2 id="attributes"><a href="#attributes">Attributes</a></h2><h3 id="optional-field-attributes"><a href="#optional-field-attributes">Optional field attributes</a></h3>
 <ul>
 <li><code>#[diesel(deserialize_as = Type)]</code>, instead of deserializing directly
 into the field type, the implementation will deserialize into <code>Type</code>.
@@ -33,7 +33,7 @@ Then <code>Type</code> is converted via
 <a href="https://doc.rust-lang.org/stable/std/convert/trait.TryInto.html#tymethod.try_into"><code>.try_into</code></a>
 into the field type. By default this derive will deserialize directly into the field type</li>
 </ul>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
 <p>If we just want to map a query to our struct, we can use <code>derive</code>.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Queryable</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>)]</span>
@@ -107,5 +107,5 @@ into the field type. By default this derive will deserialize directly into the f
 <span class="kw">let</span> <span class="ident">first_user</span> <span class="op">=</span> <span class="ident">users</span>.<span class="ident">first</span>(<span class="ident">connection</span>)<span class="question-mark">?</span>;
 <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="ident">User</span> { <span class="ident">id</span>: <span class="number">1</span>, <span class="ident">name</span>: <span class="string">&quot;sean&quot;</span>.<span class="ident">into</span>() };
 <span class="macro">assert_eq!</span>(<span class="ident">expected</span>, <span class="ident">first_user</span>);</code></pre></div>
-</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel_derives" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e7aca8959 2022-02-09)" ></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="diesel_derives" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
 </body></html>

@@ -1823,7 +1823,7 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use schema::users::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(connection).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(users)</span>
     <span class="doccomment">///     .values(&amp;vec![name.eq(&quot;Sean&quot;); 3])</span>
     <span class="doccomment">///     .execute(connection)?;</span>
@@ -1870,7 +1870,7 @@
     <span class="doccomment">/// # fn main() {</span>
     <span class="doccomment">/// #     use self::animals::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM animals&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM animals&quot;).execute(connection).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(animals)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
     <span class="doccomment">///         (species.eq(&quot;dog&quot;), name.eq(Some(&quot;Jack&quot;)), legs.eq(4)),</span>
@@ -1986,7 +1986,7 @@
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM posts&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM posts&quot;).execute(connection)?;</span>
     <span class="doccomment">/// #     diesel::insert_into(posts::table)</span>
     <span class="doccomment">/// #         .values((posts::user_id.eq(1), posts::title.eq(&quot;Sean&#39;s Post&quot;)))</span>
     <span class="doccomment">/// #         .execute(connection)?;</span>
@@ -2272,7 +2272,7 @@
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM posts&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM posts&quot;).execute(connection)?;</span>
     <span class="doccomment">/// #     diesel::insert_into(posts::table)</span>
     <span class="doccomment">/// #         .values((posts::user_id.eq(1), posts::title.eq(&quot;Sean&#39;s Post&quot;)))</span>
     <span class="doccomment">/// #         .execute(connection)?;</span>
@@ -2436,7 +2436,7 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use schema::users::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM users&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(connection)?;</span>
     <span class="doccomment">/// diesel::insert_into(users)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
     <span class="doccomment">///         name.eq(&quot;Saul&quot;),</span>
@@ -2503,7 +2503,7 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use schema::users::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;DELETE FROM users&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(connection)?;</span>
     <span class="doccomment">/// diesel::insert_into(users)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
     <span class="doccomment">///         name.eq(&quot;Saul&quot;),</span>
@@ -3446,5 +3446,5 @@
 <span class="comment">// part of their query is wrong.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Conn</span><span class="op">&gt;</span> <span class="ident">RunQueryDsl</span><span class="op">&lt;</span><span class="ident">Conn</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">T</span> <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Table</span> {}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

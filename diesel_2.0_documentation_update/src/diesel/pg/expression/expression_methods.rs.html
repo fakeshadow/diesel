@@ -1578,6 +1578,12 @@
 <span id="1573">1573</span>
 <span id="1574">1574</span>
 <span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
 </pre><pre class="rust"><code><span class="doccomment">//! PostgreSQL specific expression methods</span>
 
 <span class="kw">pub</span>(<span class="kw">in</span> <span class="ident"><span class="kw">crate</span>::pg</span>) <span class="kw">use</span> <span class="ident"><span class="self">self</span>::private</span>::{
@@ -1690,8 +1696,8 @@
     <span class="doccomment">/// #     use self::timestamps::dsl::*;</span>
     <span class="doccomment">/// #     use chrono::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE timestamps (\&quot;timestamp\&quot;</span>
-    <span class="doccomment">/// #         timestamp NOT NULL)&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE timestamps (\&quot;timestamp\&quot;</span>
+    <span class="doccomment">/// #         timestamp NOT NULL)&quot;).execute(connection)?;</span>
     <span class="doccomment">/// let christmas_morning = NaiveDate::from_ymd(2017, 12, 25)</span>
     <span class="doccomment">///     .and_hms(8, 0, 0);</span>
     <span class="doccomment">/// diesel::insert_into(timestamps)</span>
@@ -1752,8 +1758,10 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::posts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS posts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS posts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;)</span>
+    <span class="doccomment">/// #           .execute(conn)</span>
+    <span class="doccomment">/// #           .unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// diesel::insert_into(posts)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
@@ -1811,8 +1819,10 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::posts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS posts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS posts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;)</span>
+    <span class="doccomment">/// #         .execute(conn)</span>
+    <span class="doccomment">/// #         .unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// diesel::insert_into(posts)</span>
     <span class="doccomment">///     .values(tags.eq(vec![&quot;cool&quot;, &quot;awesome&quot;]))</span>
@@ -1862,8 +1872,10 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::posts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS posts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS posts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;)</span>
+    <span class="doccomment">/// #         .execute(conn)</span>
+    <span class="doccomment">/// #         .unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// diesel::insert_into(posts)</span>
     <span class="doccomment">///     .values(tags.eq(vec![&quot;cool&quot;, &quot;awesome&quot;]))</span>
@@ -1928,7 +1940,7 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::nullable_numbers::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE nullable_numbers (nullable_number INTEGER)&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE nullable_numbers (nullable_number INTEGER)&quot;).execute(connection)?;</span>
     <span class="doccomment">/// diesel::insert_into(nullable_numbers)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
     <span class="doccomment">///         nullable_number.eq(None),</span>
@@ -1976,7 +1988,7 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::nullable_numbers::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE nullable_numbers (nullable_number INTEGER)&quot;)?;</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE nullable_numbers (nullable_number INTEGER)&quot;).execute(connection)?;</span>
     <span class="doccomment">/// diesel::insert_into(nullable_numbers)</span>
     <span class="doccomment">///     .values(&amp;vec![</span>
     <span class="doccomment">///         nullable_number.eq(None),</span>
@@ -2201,8 +2213,8 @@
     <span class="doccomment">/// #     use self::posts::dsl::*;</span>
     <span class="doccomment">/// #     use std::collections::Bound;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS posts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, versions INT4RANGE NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS posts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, versions INT4RANGE NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// diesel::insert_into(posts)</span>
     <span class="doccomment">///     .values(versions.eq((Bound::Included(5), Bound::Unbounded)))</span>
@@ -2266,8 +2278,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3/24&quot;).unwrap()),</span>
     <span class="doccomment">///                  address.eq(IpNetwork::from_str(&quot;10.0.3.4/23&quot;).unwrap())])</span>
@@ -2328,8 +2340,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3/24&quot;).unwrap()),</span>
     <span class="doccomment">///                  address.eq(IpNetwork::from_str(&quot;10.0.3.4/23&quot;).unwrap())])</span>
@@ -2390,8 +2402,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3/24&quot;).unwrap()),</span>
     <span class="doccomment">///                  address.eq(IpNetwork::from_str(&quot;10.0.3.4/23&quot;).unwrap())])</span>
@@ -2453,8 +2465,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3/24&quot;).unwrap()),</span>
     <span class="doccomment">///                  address.eq(IpNetwork::from_str(&quot;10.0.3.4/23&quot;).unwrap())])</span>
@@ -2511,8 +2523,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3/24&quot;).unwrap()),</span>
     <span class="doccomment">///                  address.eq(IpNetwork::from_str(&quot;10.0.3.4/23&quot;).unwrap())])</span>
@@ -2573,8 +2585,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3&quot;).unwrap())])</span>
     <span class="doccomment">///     .execute(conn)?;</span>
@@ -2624,8 +2636,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.3&quot;).unwrap())])</span>
     <span class="doccomment">///     .execute(conn)?;</span>
@@ -2675,8 +2687,8 @@
     <span class="doccomment">/// #     use ipnetwork::IpNetwork;</span>
     <span class="doccomment">/// #     use std::str::FromStr;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS hosts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS hosts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE hosts (id SERIAL PRIMARY KEY, address INET NOT NULL)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// diesel::insert_into(hosts)</span>
     <span class="doccomment">///     .values(vec![address.eq(IpNetwork::from_str(&quot;10.0.2.53&quot;).unwrap())])</span>
     <span class="doccomment">///     .execute(conn)?;</span>
@@ -2736,12 +2748,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let santas_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;Article Circle Expressway 1&quot;,</span>
@@ -2808,12 +2820,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let santas_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;Article Circle Expressway 1&quot;,</span>
@@ -2869,12 +2881,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let santas_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;Article Circle Expressway 1&quot;,</span>
@@ -2930,12 +2942,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let santas_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;Article Circle Expressway 1&quot;,</span>
@@ -2991,12 +3003,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let easter_bunny_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;123 Carrot Road&quot;,</span>
@@ -3052,12 +3064,12 @@
     <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
     <span class="doccomment">/// #     use self::contacts::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE IF EXISTS contacts&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE contacts (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS contacts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE contacts (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         address JSONB NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// let partial_easter_bunny_address: serde_json::Value = serde_json::json!({</span>
     <span class="doccomment">///     &quot;street&quot;: &quot;123 Carrot Road&quot;,</span>
@@ -3154,5 +3166,5 @@
     <span class="kw">impl</span> <span class="ident">JsonbOrNullableJsonb</span> <span class="kw">for</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Jsonb</span><span class="op">&gt;</span> {}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

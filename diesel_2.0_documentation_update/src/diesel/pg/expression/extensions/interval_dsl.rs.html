@@ -335,6 +335,14 @@
 <span id="330">330</span>
 <span id="331">331</span>
 <span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ops::Mul</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::data_types::PgInterval</span>;
@@ -361,11 +369,15 @@
 <span class="doccomment">/// # fn main() {</span>
 <span class="doccomment">/// #     use self::users::dsl::*;</span>
 <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-<span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE users (id serial primary key, name</span>
-<span class="doccomment">/// #        varchar not null, created_at timestamp not null)&quot;).unwrap();</span>
-<span class="doccomment">/// connection.execute(&quot;INSERT INTO users (name, created_at) VALUES</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE users (id serial primary key, name</span>
+<span class="doccomment">/// #        varchar not null, created_at timestamp not null)&quot;)</span>
+<span class="doccomment">/// #     .execute(connection)</span>
+<span class="doccomment">/// #     .unwrap();</span>
+<span class="doccomment">/// diesel::sql_query(&quot;INSERT INTO users (name, created_at) VALUES</span>
 <span class="doccomment">///     (&#39;Sean&#39;, NOW()), (&#39;Tess&#39;, NOW() - &#39;5 minutes&#39;::interval),</span>
-<span class="doccomment">///     (&#39;Jim&#39;, NOW() - &#39;10 minutes&#39;::interval)&quot;).unwrap();</span>
+<span class="doccomment">///     (&#39;Jim&#39;, NOW() - &#39;10 minutes&#39;::interval)&quot;)</span>
+<span class="doccomment">///     .execute(connection)</span>
+<span class="doccomment">///     .unwrap();</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// let mut data: Vec&lt;String&gt; = users</span>
 <span class="doccomment">///     .select(name)</span>
@@ -392,11 +404,15 @@
 <span class="doccomment">/// # fn main() {</span>
 <span class="doccomment">/// #     use self::users::dsl::*;</span>
 <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-<span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE users (id serial primary key, name</span>
-<span class="doccomment">/// #        varchar not null, created_at timestamp not null)&quot;).unwrap();</span>
-<span class="doccomment">/// connection.execute(&quot;INSERT INTO users (name, created_at) VALUES</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE users (id serial primary key, name</span>
+<span class="doccomment">/// #        varchar not null, created_at timestamp not null)&quot;)</span>
+<span class="doccomment">/// #     .execute(connection)</span>
+<span class="doccomment">/// #     .unwrap();</span>
+<span class="doccomment">/// diesel::sql_query(&quot;INSERT INTO users (name, created_at) VALUES</span>
 <span class="doccomment">///     (&#39;Sean&#39;, NOW()), (&#39;Tess&#39;, NOW() - &#39;5 days&#39;::interval),</span>
-<span class="doccomment">///     (&#39;Jim&#39;, NOW() - &#39;10 days&#39;::interval)&quot;).unwrap();</span>
+<span class="doccomment">///     (&#39;Jim&#39;, NOW() - &#39;10 days&#39;::interval)&quot;)</span>
+<span class="doccomment">///     .execute(connection)</span>
+<span class="doccomment">///     .unwrap();</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// let mut data: Vec&lt;String&gt; = users</span>
 <span class="doccomment">///     .select(name)</span>
@@ -668,5 +684,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

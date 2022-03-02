@@ -1306,6 +1306,16 @@
 <span id="1301">1301</span>
 <span id="1302">1302</span>
 <span id="1303">1303</span>
+<span id="1304">1304</span>
+<span id="1305">1305</span>
+<span id="1306">1306</span>
+<span id="1307">1307</span>
+<span id="1308">1308</span>
+<span id="1309">1309</span>
+<span id="1310">1310</span>
+<span id="1311">1311</span>
+<span id="1312">1312</span>
+<span id="1313">1313</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">recursion_limit</span> <span class="op">=</span> <span class="string">&quot;1024&quot;</span>]</span>
 <span class="comment">// Built-in Lints</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">warnings</span>, <span class="ident">missing_copy_implementations</span>)]</span>
@@ -1672,7 +1682,9 @@
 <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
 <span class="doccomment">/// #     use schema::users::dsl::*;</span>
 <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-<span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE users (id INTEGER PRIMARY KEY, name VARCHAR(255) NOT NULL)&quot;).unwrap();</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE users (id INTEGER PRIMARY KEY, name VARCHAR(255) NOT NULL)&quot;)</span>
+<span class="doccomment">/// #         .execute(connection)</span>
+<span class="doccomment">/// #         .unwrap();</span>
 <span class="doccomment">/// let user = InsertableUser {</span>
 <span class="doccomment">///     id: 1,</span>
 <span class="doccomment">///     name: &quot;thomas&quot;.to_string(),</span>
@@ -2495,8 +2507,12 @@
 <span class="doccomment">/// fn run() -&gt; Result&lt;(), Box&lt;dyn (::std::error::Error)&gt;&gt; {</span>
 <span class="doccomment">/// #    use self::players::dsl::*;</span>
 <span class="doccomment">///     let connection = &amp;mut SqliteConnection::establish(&quot;:memory:&quot;)?;</span>
-<span class="doccomment">/// #    connection.execute(&quot;create table players (id integer primary key autoincrement, score integer)&quot;).unwrap();</span>
-<span class="doccomment">/// #    connection.execute(&quot;insert into players (score) values (10), (20), (30)&quot;).unwrap();</span>
+<span class="doccomment">/// #    diesel::sql_query(&quot;create table players (id integer primary key autoincrement, score integer)&quot;)</span>
+<span class="doccomment">/// #        .execute(connection)</span>
+<span class="doccomment">/// #        .unwrap();</span>
+<span class="doccomment">/// #    diesel::sql_query(&quot;insert into players (score) values (10), (20), (30)&quot;)</span>
+<span class="doccomment">/// #        .execute(connection)</span>
+<span class="doccomment">/// #        .unwrap();</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///     my_sum::register_impl::&lt;MySum, _&gt;(connection)?;</span>
 <span class="doccomment">///</span>
@@ -2571,8 +2587,12 @@
 <span class="doccomment">/// fn run() -&gt; Result&lt;(), Box&lt;dyn (::std::error::Error)&gt;&gt; {</span>
 <span class="doccomment">/// #    use self::student_avgs::dsl::*;</span>
 <span class="doccomment">///     let connection = &amp;mut SqliteConnection::establish(&quot;:memory:&quot;)?;</span>
-<span class="doccomment">/// #    connection.execute(&quot;create table student_avgs (id integer primary key autoincrement, s1_avg float, s2_avg float)&quot;).unwrap();</span>
-<span class="doccomment">/// #    connection.execute(&quot;insert into student_avgs (s1_avg, s2_avg) values (85.5, 90), (79.8, 80.1)&quot;).unwrap();</span>
+<span class="doccomment">/// #    diesel::sql_query(&quot;create table student_avgs (id integer primary key autoincrement, s1_avg float, s2_avg float)&quot;)</span>
+<span class="doccomment">/// #       .execute(connection)</span>
+<span class="doccomment">/// #       .unwrap();</span>
+<span class="doccomment">/// #    diesel::sql_query(&quot;insert into student_avgs (s1_avg, s2_avg) values (85.5, 90), (79.8, 80.1)&quot;)</span>
+<span class="doccomment">/// #        .execute(connection)</span>
+<span class="doccomment">/// #        .unwrap();</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///     range_max::register_impl::&lt;RangeMax&lt;f32&gt;, _, _&gt;(connection)?;</span>
 <span class="doccomment">///</span>
@@ -2610,5 +2630,5 @@
     <span class="ident">diesel_public_if::expand</span>(<span class="macro">parse_macro_input!</span>(<span class="ident">attrs</span>), <span class="macro">parse_macro_input!</span>(<span class="ident">input</span>)).<span class="ident">into</span>()
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel_derives" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel_derives" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

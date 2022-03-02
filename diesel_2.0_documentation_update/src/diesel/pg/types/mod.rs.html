@@ -902,11 +902,11 @@
     <span class="doccomment">/// #     use diesel::insert_into;</span>
     <span class="doccomment">/// #     use self::items::dsl::*;</span>
     <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE items (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE items (</span>
     <span class="doccomment">/// #         id SERIAL PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR NOT NULL,</span>
     <span class="doccomment">/// #         price MONEY NOT NULL</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(connection).unwrap();</span>
     <span class="doccomment">/// let inserted_price = insert_into(items)</span>
     <span class="doccomment">///     .values((name.eq(&quot;Shiny Thing&quot;), price.eq(Cents(123_456))))</span>
     <span class="doccomment">///     .returning(price)</span>
@@ -1120,5 +1120,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

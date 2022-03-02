@@ -190,11 +190,11 @@
     <span class="doccomment">/// #     use diesel::insert_into;</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// #     let connection = &amp;mut connection_no_data();</span>
-    <span class="doccomment">/// #     connection.execute(&quot;CREATE TABLE users (</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE users (</span>
     <span class="doccomment">/// #         id INTEGER PRIMARY KEY,</span>
     <span class="doccomment">/// #         name VARCHAR(255) NOT NULL,</span>
     <span class="doccomment">/// #         hair_color VARCHAR(255)</span>
-    <span class="doccomment">/// #     )&quot;).unwrap();</span>
+    <span class="doccomment">/// #     )&quot;).execute(connection).unwrap();</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// #     insert_into(users)</span>
     <span class="doccomment">/// #         .values(&amp;vec![</span>
@@ -320,5 +320,5 @@
     <span class="kw">impl</span> <span class="ident">TextOrNullableText</span> <span class="kw">for</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span> {}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

@@ -73,6 +73,8 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pg::backend::PgOnConflictClaues</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pg::Pg</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::query_builder::upsert::on_conflict_target</span>::{<span class="ident">ConflictTarget</span>, <span class="ident">OnConflictTarget</span>};
@@ -94,8 +96,10 @@
 <span class="doccomment">/// use diesel::upsert::*;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-<span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
-<span class="doccomment">/// conn.execute(&quot;ALTER TABLE users ADD CONSTRAINT users_name UNIQUE (name)&quot;).unwrap();</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
+<span class="doccomment">/// diesel::sql_query(&quot;ALTER TABLE users ADD CONSTRAINT users_name UNIQUE (name)&quot;)</span>
+<span class="doccomment">///     .execute(conn)</span>
+<span class="doccomment">///     .unwrap();</span>
 <span class="doccomment">/// let user = User { id: 1, name: &quot;Sean&quot; };</span>
 <span class="doccomment">/// let same_name_different_id = User { id: 2, name: &quot;Sean&quot; };</span>
 <span class="doccomment">/// let same_id_different_name = User { id: 1, name: &quot;Pascal&quot; };</span>
@@ -144,5 +148,5 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Table</span><span class="op">&gt;</span> <span class="ident">OnConflictTarget</span><span class="op">&lt;</span><span class="ident">Table</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ConflictTarget</span><span class="op">&lt;</span><span class="ident">OnConstraint</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

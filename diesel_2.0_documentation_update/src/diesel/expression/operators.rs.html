@@ -733,8 +733,8 @@
 
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty_param</span>,)<span class="op">+</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::internal::operators_macro::FieldAliasMapper</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty_param</span>,)<span class="op">+</span><span class="op">&gt;</span>
         <span class="kw">where</span>
-            <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::AliasSource</span>,
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty_param</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::aliasing::FieldAliasMapper</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>,)<span class="op">+</span>
+            <span class="ident">S</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::query_source::AliasSource</span>,
+            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty_param</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::internal::operators_macro::FieldAliasMapper</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>,)<span class="op">+</span>
         {
             <span class="kw">type</span> <span class="ident">Out</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>
                 $(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty_param</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::internal::operators_macro::FieldAliasMapper</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Out</span>,)<span class="op">+</span>
@@ -1242,5 +1242,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

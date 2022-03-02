@@ -429,9 +429,9 @@
     <span class="doccomment">/// #     use self::users::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;sqlite&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// let inserted_row_count = diesel::insert_into(users)</span>
@@ -460,7 +460,7 @@
     <span class="doccomment">/// #     use self::users::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// # #[cfg(feature = &quot;postgres&quot;)]</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">///</span>
@@ -503,10 +503,10 @@
     <span class="doccomment">/// #     use self::users::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;sqlite&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
-    <span class="doccomment">/// conn.execute(&quot;CREATE UNIQUE INDEX users_name ON users (name)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// diesel::sql_query(&quot;CREATE UNIQUE INDEX users_name ON users (name)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">/// let same_name_different_id = User { id: 2, name: &quot;Sean&quot; };</span>
     <span class="doccomment">/// let same_id_different_name = User { id: 1, name: &quot;Pascal&quot; };</span>
@@ -558,9 +558,9 @@
     <span class="doccomment">/// use diesel::upsert::*;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DROP TABLE users&quot;).unwrap();</span>
-    <span class="doccomment">/// #     conn.execute(&quot;CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT, hair_color TEXT)&quot;).unwrap();</span>
-    <span class="doccomment">/// conn.execute(&quot;CREATE UNIQUE INDEX users_name_hair_color ON users (name, hair_color)&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE users&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT, hair_color TEXT)&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// diesel::sql_query(&quot;CREATE UNIQUE INDEX users_name_hair_color ON users (name, hair_color)&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Sean&quot;, hair_color: &quot;black&quot; };</span>
     <span class="doccomment">/// let same_name_different_hair_color = User { id: 2, name: &quot;Sean&quot;, hair_color: &quot;brown&quot; };</span>
     <span class="doccomment">/// let same_name_same_hair_color = User { id: 3, name: &quot;Sean&quot;, hair_color: &quot;black&quot; };</span>
@@ -666,9 +666,9 @@
     <span class="doccomment">/// #     use self::users::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;sqlite&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Pascal&quot; };</span>
     <span class="doccomment">/// let user2 = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">///</span>
@@ -699,9 +699,9 @@
     <span class="doccomment">/// #     use self::users::dsl::*;</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;sqlite&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Pascal&quot; };</span>
     <span class="doccomment">/// let user2 = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">///</span>
@@ -734,7 +734,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
     <span class="doccomment">/// #     #[cfg(feature = &quot;postgres&quot;)]</span>
-    <span class="doccomment">/// #     conn.execute(&quot;TRUNCATE TABLE users&quot;).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;TRUNCATE TABLE users&quot;).execute(conn).unwrap();</span>
     <span class="doccomment">/// let user = User { id: 1, name: &quot;Pascal&quot; };</span>
     <span class="doccomment">/// let user2 = User { id: 1, name: &quot;Sean&quot; };</span>
     <span class="doccomment">/// let user3 = User { id: 2, name: &quot;Tess&quot; };</span>
@@ -796,5 +796,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

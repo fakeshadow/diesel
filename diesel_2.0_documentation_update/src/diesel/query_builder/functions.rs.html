@@ -673,12 +673,12 @@
 <span class="doccomment">/// # fn main() {</span>
 <span class="doccomment">/// # use self::users::dsl::*;</span>
 <span class="doccomment">/// # let connection = &amp;mut establish_connection();</span>
-<span class="doccomment">/// # connection.execute(&quot;DROP TABLE users&quot;).unwrap();</span>
-<span class="doccomment">/// # connection.execute(&quot;CREATE TABLE users (</span>
+<span class="doccomment">/// # diesel::sql_query(&quot;DROP TABLE users&quot;).execute(connection).unwrap();</span>
+<span class="doccomment">/// # diesel::sql_query(&quot;CREATE TABLE users (</span>
 <span class="doccomment">/// #     id SERIAL PRIMARY KEY,</span>
 <span class="doccomment">/// #     name VARCHAR,</span>
-<span class="doccomment">/// #     surname VARCHAR)&quot;).unwrap();</span>
-<span class="doccomment">/// # connection.execute(&quot;INSERT INTO users(name, surname) VALUES(&#39;Sean&#39;, &#39;Griffin&#39;)&quot;).unwrap();</span>
+<span class="doccomment">/// #     surname VARCHAR)&quot;).execute(connection).unwrap();</span>
+<span class="doccomment">/// # diesel::sql_query(&quot;INSERT INTO users(name, surname) VALUES(&#39;Sage&#39;, &#39;Griffin&#39;)&quot;).execute(connection).unwrap();</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// let updated_row = diesel::update(users.filter(id.eq(1)))</span>
 <span class="doccomment">///     .set((name.eq(&quot;James&quot;), surname.eq(&quot;Bond&quot;)))</span>
@@ -1110,7 +1110,7 @@
 <span class="doccomment">/// #     use diesel::{insert_into, replace_into};</span>
 <span class="doccomment">/// #</span>
 <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
-<span class="doccomment">/// #     conn.execute(&quot;DELETE FROM users&quot;).unwrap();</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;DELETE FROM users&quot;).execute(conn).unwrap();</span>
 <span class="doccomment">/// replace_into(users)</span>
 <span class="doccomment">///     .values(&amp;vec![</span>
 <span class="doccomment">///         (id.eq(1), name.eq(&quot;Sean&quot;)),</span>
@@ -1218,5 +1218,5 @@
     <span class="ident">SqlQuery::from_sql</span>(<span class="ident">query</span>.<span class="ident">into</span>())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (4ce374923 2022-02-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
 </body></html>

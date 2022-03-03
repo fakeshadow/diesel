@@ -201,7 +201,7 @@
 <span class="doccomment">/// # fn main() {</span>
 <span class="doccomment">/// #     use schema::users::dsl::*;</span>
 <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-<span class="doccomment">/// #     connection.execute(&quot;INSERT INTO users (name) VALUES (&#39;Jim&#39;)&quot;).unwrap();</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;INSERT INTO users (name) VALUES (&#39;Jim&#39;)&quot;).execute(connection).unwrap();</span>
 <span class="doccomment">/// let sean = (1, &quot;Sean&quot;.to_string());</span>
 <span class="doccomment">/// let jim = (3, &quot;Jim&quot;.to_string());</span>
 <span class="doccomment">/// let data = users.filter(name.eq(any(vec![&quot;Sean&quot;, &quot;Jim&quot;])));</span>
@@ -230,7 +230,7 @@
 <span class="doccomment">/// # fn main() {</span>
 <span class="doccomment">/// #     use schema::users::dsl::*;</span>
 <span class="doccomment">/// #     let connection = &amp;mut establish_connection();</span>
-<span class="doccomment">/// #     connection.execute(&quot;INSERT INTO users (name) VALUES (&#39;Jim&#39;)&quot;).unwrap();</span>
+<span class="doccomment">/// #     diesel::sql_query(&quot;INSERT INTO users (name) VALUES (&#39;Jim&#39;)&quot;).execute(connection).unwrap();</span>
 <span class="doccomment">/// let tess = (2, &quot;Tess&quot;.to_string());</span>
 <span class="doccomment">/// let data = users.filter(name.ne(all(vec![&quot;Sean&quot;, &quot;Jim&quot;])));</span>
 <span class="doccomment">/// assert_eq!(Ok(vec![tess]), data.load(connection));</span>
@@ -358,5 +358,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (f0c4da499 2022-03-01)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (8769f4ef2 2022-03-02)" ></div>
 </body></html>

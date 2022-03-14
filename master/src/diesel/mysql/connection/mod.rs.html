@@ -393,13 +393,13 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">dotenv</span>;
+    <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">dotenvy</span>;
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident">std::env</span>;
 
     <span class="kw">fn</span> <span class="ident">connection</span>() -&gt; <span class="ident">MysqlConnection</span> {
-        <span class="ident">dotenv::dotenv</span>().<span class="ident">ok</span>();
+        <span class="ident">dotenvy::dotenv</span>().<span class="ident">ok</span>();
         <span class="kw">let</span> <span class="ident">database_url</span> <span class="op">=</span> <span class="ident">env::var</span>(<span class="string">&quot;MYSQL_UNIT_TEST_DATABASE_URL&quot;</span>)
             .<span class="ident">or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">env::var</span>(<span class="string">&quot;MYSQL_DATABASE_URL&quot;</span>))
             .<span class="ident">or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">env::var</span>(<span class="string">&quot;DATABASE_URL&quot;</span>))

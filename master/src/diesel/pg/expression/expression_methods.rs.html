@@ -1584,6 +1584,62 @@
 <span id="1579">1579</span>
 <span id="1580">1580</span>
 <span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
+<span id="1597">1597</span>
+<span id="1598">1598</span>
+<span id="1599">1599</span>
+<span id="1600">1600</span>
+<span id="1601">1601</span>
+<span id="1602">1602</span>
+<span id="1603">1603</span>
+<span id="1604">1604</span>
+<span id="1605">1605</span>
+<span id="1606">1606</span>
+<span id="1607">1607</span>
+<span id="1608">1608</span>
+<span id="1609">1609</span>
+<span id="1610">1610</span>
+<span id="1611">1611</span>
+<span id="1612">1612</span>
+<span id="1613">1613</span>
+<span id="1614">1614</span>
+<span id="1615">1615</span>
+<span id="1616">1616</span>
+<span id="1617">1617</span>
+<span id="1618">1618</span>
+<span id="1619">1619</span>
+<span id="1620">1620</span>
+<span id="1621">1621</span>
+<span id="1622">1622</span>
+<span id="1623">1623</span>
+<span id="1624">1624</span>
+<span id="1625">1625</span>
+<span id="1626">1626</span>
+<span id="1627">1627</span>
+<span id="1628">1628</span>
+<span id="1629">1629</span>
+<span id="1630">1630</span>
+<span id="1631">1631</span>
+<span id="1632">1632</span>
+<span id="1633">1633</span>
+<span id="1634">1634</span>
+<span id="1635">1635</span>
+<span id="1636">1636</span>
+<span id="1637">1637</span>
 </pre><pre class="rust"><code><span class="doccomment">//! PostgreSQL specific expression methods</span>
 
 <span class="kw">pub</span>(<span class="kw">in</span> <span class="ident"><span class="kw">crate</span>::pg</span>) <span class="kw">use</span> <span class="ident"><span class="self">self</span>::private</span>::{
@@ -1595,7 +1651,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression::grouped::Grouped</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression::operators</span>::{<span class="ident">Asc</span>, <span class="ident">Desc</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression</span>::{<span class="ident">AsExpression</span>, <span class="ident">Expression</span>, <span class="ident">IntoSql</span>, <span class="ident">TypedExpressionType</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types</span>::{<span class="ident">Array</span>, <span class="ident">Inet</span>, <span class="ident">Jsonb</span>, <span class="ident">SqlType</span>, <span class="ident">Text</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types</span>::{<span class="ident">Array</span>, <span class="ident">Inet</span>, <span class="ident">Integer</span>, <span class="ident">Jsonb</span>, <span class="ident">SqlType</span>, <span class="ident">Text</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::EscapeExpressionMethods</span>;
 
 <span class="doccomment">/// PostgreSQL specific methods which are present on all expressions.</span>
@@ -1900,6 +1956,62 @@
         <span class="ident">T</span>: <span class="ident">AsExpression</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::SqlType</span><span class="op">&gt;</span>,
     {
         <span class="ident">Grouped</span>(<span class="ident">IsContainedBy::new</span>(<span class="self">self</span>, <span class="ident">other</span>.<span class="ident">as_expression</span>()))
+    }
+    <span class="doccomment">/// Indexes a PostgreSQL array.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This operator indexes in to an array to access a single element.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that PostgreSQL arrays are 1-indexed, so `foo.index(1)` is the</span>
+    <span class="doccomment">/// first element in the array.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// # include!(&quot;../../doctest_setup.rs&quot;);</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// # table! {</span>
+    <span class="doccomment">/// #     posts {</span>
+    <span class="doccomment">/// #         id -&gt; Integer,</span>
+    <span class="doccomment">/// #         tags -&gt; Array&lt;VarChar&gt;,</span>
+    <span class="doccomment">/// #     }</span>
+    <span class="doccomment">/// # }</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// # fn main() {</span>
+    <span class="doccomment">/// #     run_test().unwrap();</span>
+    <span class="doccomment">/// # }</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// # fn run_test() -&gt; QueryResult&lt;()&gt; {</span>
+    <span class="doccomment">/// #     use self::posts::dsl::*;</span>
+    <span class="doccomment">/// #     let conn = &amp;mut establish_connection();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;DROP TABLE IF EXISTS posts&quot;).execute(conn).unwrap();</span>
+    <span class="doccomment">/// #     diesel::sql_query(&quot;CREATE TABLE posts (id SERIAL PRIMARY KEY, tags TEXT[] NOT NULL)&quot;)</span>
+    <span class="doccomment">/// #         .execute(conn)</span>
+    <span class="doccomment">/// #         .unwrap();</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// diesel::insert_into(posts)</span>
+    <span class="doccomment">///     .values(&amp;vec![</span>
+    <span class="doccomment">///         tags.eq(vec![&quot;cool&quot;, &quot;awesome&quot;]),</span>
+    <span class="doccomment">///         tags.eq(vec![&quot;splendid&quot;, &quot;marvellous&quot;]),</span>
+    <span class="doccomment">///    ])</span>
+    <span class="doccomment">///     .execute(conn)?;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let data = posts.select(tags.index(id))</span>
+    <span class="doccomment">///     .load::&lt;String&gt;(conn)?;</span>
+    <span class="doccomment">/// assert_eq!(vec![&quot;cool&quot;, &quot;marvellous&quot;], data);</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let data = posts.select(id)</span>
+    <span class="doccomment">///     .filter(tags.index(1).eq(&quot;splendid&quot;))</span>
+    <span class="doccomment">///     .load::&lt;i32&gt;(conn)?;</span>
+    <span class="doccomment">/// assert_eq!(vec![2], data);</span>
+    <span class="doccomment">/// #     Ok(())</span>
+    <span class="doccomment">/// # }</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">fn</span> <span class="ident">index</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">T</span>) -&gt; <span class="ident">dsl::ArrayIndex</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">T</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident"><span class="self">Self</span>::SqlType</span>: <span class="ident">SqlType</span>,
+        <span class="ident">T</span>: <span class="ident">AsExpression</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+    {
+        <span class="ident">ArrayIndex::new</span>(<span class="self">self</span>, <span class="ident">other</span>.<span class="ident">as_expression</span>())
     }
 }
 
@@ -3166,5 +3278,5 @@
     <span class="kw">impl</span> <span class="ident">JsonbOrNullableJsonb</span> <span class="kw">for</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Jsonb</span><span class="op">&gt;</span> {}
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f4e06771 2022-03-10)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (e95b10ba4 2022-03-13)" ></div>
 </body></html>

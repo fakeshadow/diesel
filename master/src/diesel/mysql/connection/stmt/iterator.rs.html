@@ -375,7 +375,7 @@
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="ident">Ref</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">OutputBinds</span>, <span class="ident">Statement</span>, <span class="ident">StatementMetadata</span>};
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">OutputBinds</span>, <span class="ident">Statement</span>, <span class="ident">StatementMetadata</span>, <span class="ident">StatementUse</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::connection::statement_cache::MaybeCached</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mysql</span>::{<span class="ident">Mysql</span>, <span class="ident">MysqlType</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::result::QueryResult</span>;
@@ -383,7 +383,7 @@
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StatementIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">stmt</span>: <span class="ident">MaybeCached</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Statement</span><span class="op">&gt;</span>,
+    <span class="ident">stmt</span>: <span class="ident">StatementUse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="ident">last_row</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">PrivateMysqlRow</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">metadata</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">StatementMetadata</span><span class="op">&gt;</span>,
     <span class="ident">len</span>: <span class="ident">usize</span>,
@@ -391,14 +391,14 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">StatementIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_stmt</span>(
-        <span class="kw-2">mut</span> <span class="ident">stmt</span>: <span class="ident">MaybeCached</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Statement</span><span class="op">&gt;</span>,
+        <span class="ident">stmt</span>: <span class="ident">MaybeCached</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Statement</span><span class="op">&gt;</span>,
         <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MysqlType</span><span class="op">&gt;</span>],
     ) -&gt; <span class="ident">QueryResult</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">metadata</span> <span class="op">=</span> <span class="ident">stmt</span>.<span class="ident">metadata</span>()<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output_binds</span> <span class="op">=</span> <span class="ident">OutputBinds::from_output_types</span>(<span class="ident">types</span>, <span class="kw-2">&amp;</span><span class="ident">metadata</span>);
 
-        <span class="ident">stmt</span>.<span class="ident">execute_statement</span>(<span class="kw-2">&amp;mut</span> <span class="ident">output_binds</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">stmt</span> <span class="op">=</span> <span class="ident">stmt</span>.<span class="ident">execute_statement</span>(<span class="kw-2">&amp;mut</span> <span class="ident">output_binds</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">stmt</span>.<span class="ident">result_size</span>() }<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="ident">StatementIterator</span> {
@@ -742,5 +742,5 @@
     );
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (461e80780 2022-03-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (58f11791a 2022-03-17)" ></div>
 </body></html>

@@ -499,17 +499,6 @@
 <span id="494">494</span>
 <span id="495">495</span>
 <span id="496">496</span>
-<span id="497">497</span>
-<span id="498">498</span>
-<span id="499">499</span>
-<span id="500">500</span>
-<span id="501">501</span>
-<span id="502">502</span>
-<span id="503">503</span>
-<span id="504">504</span>
-<span id="505">505</span>
-<span id="506">506</span>
-<span id="507">507</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Types related to database connections</span>
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;i-implement-a-third-party-backend-and-opt-into-breaking-changes&quot;</span>)]</span>
@@ -803,18 +792,7 @@
         <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="self">Self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span>,
         <span class="ident">E</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span>,
     {
-        <span class="ident"><span class="self">Self</span>::TransactionManager::begin_transaction</span>(<span class="self">self</span>)<span class="question-mark">?</span>;
-        <span class="kw">match</span> <span class="ident">f</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="self">self</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; {
-                <span class="ident"><span class="self">Self</span>::TransactionManager::commit_transaction</span>(<span class="self">self</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
-            }
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="ident"><span class="self">Self</span>::TransactionManager::rollback_transaction</span>(<span class="self">self</span>)
-                    .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error::RollbackError</span>(<span class="ident">Box::new</span>(<span class="ident">e</span>)))<span class="question-mark">?</span>;
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>)
-            }
-        }
+        <span class="ident"><span class="self">Self</span>::TransactionManager::transaction</span>(<span class="self">self</span>, <span class="ident">f</span>)
     }
 
     <span class="doccomment">/// Creates a transaction that will never be committed. This is useful for</span>

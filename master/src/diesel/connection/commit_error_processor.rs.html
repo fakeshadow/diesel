@@ -162,6 +162,9 @@
 <span id="157">157</span>
 <span id="158">158</span>
 <span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A module to evaluate what to do when a commit triggers an error.</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::result::Error</span>;
 
@@ -275,6 +278,7 @@
         <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">ValidTransactionManagerStatus</span> {
             <span class="comment">// Transaction depth == 1, so one unnested transaction</span>
             <span class="ident">transaction_depth</span>: <span class="ident">NonZeroU32::new</span>(<span class="number">1</span>),
+            <span class="ident">previous_error_relevant_for_rollback</span>: <span class="prelude-val">None</span>,
         };
         <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">Error::DatabaseError</span>(
             <span class="ident">DatabaseErrorKind::ReadOnlyTransaction</span>,
@@ -293,6 +297,7 @@
         <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">ValidTransactionManagerStatus</span> {
             <span class="comment">// Transaction depth == 2, so two nested transactions</span>
             <span class="ident">transaction_depth</span>: <span class="ident">NonZeroU32::new</span>(<span class="number">2</span>),
+            <span class="ident">previous_error_relevant_for_rollback</span>: <span class="prelude-val">None</span>,
         };
         <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">Error::DatabaseError</span>(
             <span class="ident">DatabaseErrorKind::ReadOnlyTransaction</span>,
@@ -309,6 +314,7 @@
             <span class="comment">// Transaction depth == None, so no transaction running, so nothing</span>
             <span class="comment">// to rollback. Something went wrong so mark everything as broken.</span>
             <span class="ident">transaction_depth</span>: <span class="prelude-val">None</span>,
+            <span class="ident">previous_error_relevant_for_rollback</span>: <span class="prelude-val">None</span>,
         };
         <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">Error::DatabaseError</span>(
             <span class="ident">DatabaseErrorKind::ReadOnlyTransaction</span>,

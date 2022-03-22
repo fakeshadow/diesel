@@ -538,12 +538,6 @@
 <span id="533">533</span>
 <span id="534">534</span>
 <span id="535">535</span>
-<span id="536">536</span>
-<span id="537">537</span>
-<span id="538">538</span>
-<span id="539">539</span>
-<span id="540">540</span>
-<span id="541">541</span>
 </pre><pre class="rust"><code><span class="doccomment">//! # Diesel</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Diesel is an ORM and query builder designed to reduce the boilerplate for database interactions.</span>
@@ -998,12 +992,6 @@
     <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LeftJoinQuerySource</span><span class="op">&lt;</span><span class="ident">Left</span>, <span class="ident">Right</span>, <span class="ident">On</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Left</span> <span class="kw">as</span> <span class="ident">joins::JoinTo</span><span class="op">&lt;</span><span class="ident">Right</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::OnClause</span><span class="op">&gt;</span> <span class="op">=</span>
         <span class="ident">JoinQuerySource</span><span class="op">&lt;</span><span class="ident">Left</span>, <span class="ident">Right</span>, <span class="ident">joins::LeftOuter</span>, <span class="ident">On</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Represents the return type of [`.only()`](crate::pg::expression::extensions::OnlyDsl)</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SelectFromOnly</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::query_builder::SelectStatement</span><span class="op">&lt;</span>
-        <span class="ident"><span class="kw">crate</span>::query_builder::FromClause</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::pg::query_builder::only_clause::Only</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="op">&gt;</span>;
-
     <span class="doccomment">/// [`Iterator`](std::iter::Iterator) of [`QueryResult&lt;U&gt;`](crate::result::QueryResult)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [`RunQueryDsl::load_iter`] for more information</span>
@@ -1086,5 +1074,5 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">__diesel_check_column_count_internal</span> <span class="kw">as</span> <span class="ident">__diesel_check_column_count</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (c84f39e6c 2022-03-20)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
 </body></html>

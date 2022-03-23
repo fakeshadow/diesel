@@ -158,6 +158,13 @@
 <span id="153">153</span>
 <span id="154">154</span>
 <span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">byteorder</span>::{<span class="ident">NetworkEndian</span>, <span class="ident">ReadBytesExt</span>, <span class="ident">WriteBytesExt</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::io::Write</span>;
@@ -168,6 +175,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::serialize</span>::{<span class="self">self</span>, <span class="ident">IsNull</span>, <span class="ident">Output</span>, <span class="ident">ToSql</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types</span>::{<span class="ident">Array</span>, <span class="ident">HasSqlType</span>, <span class="ident">Nullable</span>};
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">HasSqlType</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pg</span>
 <span class="kw">where</span>
     <span class="ident">Pg</span>: <span class="ident">HasSqlType</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
@@ -180,6 +188,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">ST</span><span class="op">&gt;</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">ST</span>, <span class="ident">Pg</span><span class="op">&gt;</span>,
@@ -221,6 +230,7 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">array_as_expression</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">sql_type</span>:<span class="ident">ty</span>) =&gt; {
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">ST</span>: <span class="lifetime">&#39;static</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">AsExpression</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sql_type</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
             <span class="kw">type</span> <span class="ident">Expression</span> <span class="op">=</span> <span class="ident">Bound</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">sql_type</span>, <span class="self">Self</span><span class="op">&gt;</span>;
 
@@ -242,6 +252,7 @@
 <span class="macro">array_as_expression!</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>);
 <span class="macro">array_as_expression!</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">ST</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">T</span>]
 <span class="kw">where</span>
     <span class="ident">Pg</span>: <span class="ident">HasSqlType</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>,
@@ -283,6 +294,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">ST</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">T</span>]
 <span class="kw">where</span>
     [<span class="ident">T</span>]: <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span>,
@@ -293,6 +305,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">ST</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">ST</span>: <span class="lifetime">&#39;static</span>,
@@ -304,6 +317,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">ST</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Array</span><span class="op">&lt;</span><span class="ident">ST</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">ST</span>: <span class="lifetime">&#39;static</span>,
@@ -314,5 +328,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

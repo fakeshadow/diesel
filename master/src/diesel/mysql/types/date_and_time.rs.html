@@ -380,6 +380,8 @@
 <span id="375">375</span>
 <span id="376">376</span>
 <span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
 </pre><pre class="rust"><code><span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">chrono</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::io::Write</span>;
@@ -492,6 +494,7 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">mysql_time_impls</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) =&gt; {
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>)]</span>
         <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MysqlTime</span> {
             <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Mysql</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
                 <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw">unsafe</span> {
@@ -503,6 +506,7 @@
             }
         }
 
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>)]</span>
         <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MysqlTime</span> {
             <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">value</span>: <span class="ident">MysqlValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
                 <span class="ident">value</span>.<span class="ident">time_value</span>()
@@ -516,21 +520,21 @@
 <span class="macro">mysql_time_impls!</span>(<span class="ident">Time</span>);
 <span class="macro">mysql_time_impls!</span>(<span class="ident">Date</span>);
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Datetime</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDateTime</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Mysql</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="op">&lt;</span><span class="ident">NaiveDateTime</span> <span class="kw">as</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Timestamp</span>, <span class="ident">Mysql</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::to_sql</span>(<span class="self">self</span>, <span class="ident">out</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Datetime</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDateTime</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">MysqlValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="op">&lt;</span><span class="ident">NaiveDateTime</span> <span class="kw">as</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Timestamp</span>, <span class="ident">Mysql</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Timestamp</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDateTime</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Mysql</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="ident">MysqlTime</span> {
@@ -550,7 +554,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Timestamp</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDateTime</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">MysqlValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">MysqlTime</span> <span class="kw">as</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Timestamp</span>, <span class="ident">Mysql</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
@@ -572,7 +576,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Time</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveTime</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">serialize::Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Mysql</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="ident">MysqlTime</span> {
@@ -592,7 +596,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Time</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveTime</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">MysqlValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">MysqlTime</span> <span class="kw">as</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Time</span>, <span class="ident">Mysql</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
@@ -605,7 +609,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Date</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDate</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Mysql</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="ident">MysqlTime</span> {
@@ -625,7 +629,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chrono&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mysql_backend&quot;</span>))]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Date</span>, <span class="ident">Mysql</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NaiveDate</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">MysqlValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">mysql_time</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">MysqlTime</span> <span class="kw">as</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Date</span>, <span class="ident">Mysql</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
@@ -758,5 +762,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

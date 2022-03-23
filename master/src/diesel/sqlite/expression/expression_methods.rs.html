@@ -86,6 +86,7 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
+<span id="84">84</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Sqlite specific expression methods.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::operators</span>::<span class="kw-2">*</span>;
@@ -95,6 +96,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sql_types::SqlType</span>;
 
 <span class="doccomment">/// Sqlite specific methods which are present on all expressions.</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sqlite&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SqliteExpressionMethods</span>: <span class="ident">Expression</span> <span class="op">+</span> <span class="ident">Sized</span> {
     <span class="doccomment">/// Creates a Sqlite `IS` expression.</span>
     <span class="doccomment">///</span>
@@ -170,5 +172,5 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Expression</span><span class="op">&gt;</span> <span class="ident">SqliteExpressionMethods</span> <span class="kw">for</span> <span class="ident">T</span> {}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

@@ -100,6 +100,8 @@
 <span id="95">95</span>
 <span id="96">96</span>
 <span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::time</span>::{<span class="ident">Duration</span>, <span class="ident">SystemTime</span>, <span class="ident">UNIX_EPOCH</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::deserialize</span>::{<span class="self">self</span>, <span class="ident">FromSql</span>};
@@ -112,6 +114,7 @@
     <span class="ident">UNIX_EPOCH</span> <span class="op">+</span> <span class="ident">thirty_years</span>
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">sql_types::Timestamp</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SystemTime</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Pg</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="kw">let</span> (<span class="ident">before_epoch</span>, <span class="ident">duration</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">duration_since</span>(<span class="ident">pg_epoch</span>()) {
@@ -127,6 +130,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">sql_types::Timestamp</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SystemTime</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">PgValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">usecs_passed</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">i64</span> <span class="kw">as</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">sql_types::BigInt</span>, <span class="ident">Pg</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
@@ -198,5 +202,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

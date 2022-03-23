@@ -160,6 +160,8 @@
 <span id="155">155</span>
 <span id="156">156</span>
 <span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Support for Money values under PostgreSQL.</span>
 <span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Add</span>, <span class="ident">AddAssign</span>, <span class="ident">Sub</span>, <span class="ident">SubAssign</span>};
 
@@ -184,12 +186,14 @@
 <span class="attribute">#[<span class="ident">diesel</span>(<span class="ident">sql_type</span> <span class="op">=</span> <span class="ident">Money</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PgMoney</span>(<span class="kw">pub</span> <span class="ident">i64</span>);
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="ident">Money</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PgMoney</span> {
     <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">bytes</span>: <span class="ident">PgValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">FromSql</span>::<span class="op">&lt;</span><span class="ident">BigInt</span>, <span class="ident">Pg</span><span class="op">&gt;</span><span class="ident">::from_sql</span>(<span class="ident">bytes</span>).<span class="ident">map</span>(<span class="ident">PgMoney</span>)
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="ident">Money</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PgMoney</span> {
     <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Pg</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
         <span class="ident">ToSql</span>::<span class="op">&lt;</span><span class="ident">BigInt</span>, <span class="ident">Pg</span><span class="op">&gt;</span><span class="ident">::to_sql</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">out</span>)
@@ -318,5 +322,5 @@
     <span class="ident">c1</span> <span class="op">-</span><span class="op">=</span> <span class="ident">PgMoney</span>(<span class="number">1</span>);
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

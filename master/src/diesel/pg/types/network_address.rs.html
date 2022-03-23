@@ -276,6 +276,8 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
 </pre><pre class="rust"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">ipnetwork</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
 
@@ -338,6 +340,7 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">impl_Sql</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>: <span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">net_type</span>: <span class="ident">expr</span>) =&gt; {
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;network-address&quot;</span>))]</span>
         <span class="kw">impl</span> <span class="ident">FromSql</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IpNetwork</span> {
             <span class="kw">fn</span> <span class="ident">from_sql</span>(<span class="ident">value</span>: <span class="ident">PgValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">deserialize::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
                 <span class="comment">// https://github.com/postgres/postgres/blob/55c3391d1e6a201b5b891781d21fe682a8c64fe6/src/include/utils/inet.h#L23-L28</span>
@@ -374,6 +377,7 @@
             }
         }
 
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;postgres_backend&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;network-address&quot;</span>))]</span>
         <span class="kw">impl</span> <span class="ident">ToSql</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="ident">Pg</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IpNetwork</span> {
             <span class="kw">fn</span> <span class="ident">to_sql</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Output</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;_</span>, <span class="ident">Pg</span><span class="op">&gt;</span>) -&gt; <span class="ident">serialize::Result</span> {
                 <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ipnetwork::IpNetwork</span>::<span class="kw-2">*</span>;
@@ -550,5 +554,5 @@
     <span class="macro">test_no_address_from_sql!</span>(<span class="ident">Cidr</span>);
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (3c17c84a3 2022-03-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="diesel" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (5f3700105 2022-03-22)" ></div>
 </body></html>

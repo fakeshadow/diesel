@@ -220,7 +220,7 @@ where
 /// this trait won't help you much. Normally you should only
 /// need to use this trait if you are interacting with a connection
 /// passed to a [`Migration`](../migration/trait.Migration.html)
-pub trait BoxableConnection<DB: Backend>: SimpleConnection + std::any::Any {
+pub trait BoxableConnection<DB: Backend + 'static>: SimpleConnection + std::any::Any {
     #[doc(hidden)]
     fn as_any(&self) -> &dyn std::any::Any;
 }
